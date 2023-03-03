@@ -22,6 +22,10 @@ public class Reservation{
         this.end = end;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public Reservation(){
         super();
     }
