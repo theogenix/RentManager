@@ -70,15 +70,13 @@ public class Main {
       }catch(ServiceException e){
          throw new RuntimeException(e);
       }
-/*
+
       try {
-         long id_reservation= ReservationDao.getInstance().create(new Reservation(1,1,LocalDate.of(2001,01,01),LocalDate.of(2002,01,01)));
+         long id_reservation= ReservationService.getInstance().create(new Reservation(1,1,LocalDate.of(2001,01,01),LocalDate.of(2002,01,01)));
          System.out.println(id_reservation);
 
       }catch(ServiceException e){
          throw new RuntimeException(e);
       }
-
-*/
    }
 }

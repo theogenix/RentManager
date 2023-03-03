@@ -3,6 +3,7 @@ package com.epf.rentmanager.servlet;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.service.ClientService;
+import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.service.VehicleService;
 
 import java.io.IOException;
@@ -31,6 +32,11 @@ public class HomeServlet extends HttpServlet {
 		}
 		try {
 			request.setAttribute("nbVehicle", VehicleService.getInstance().findAll().size());
+		} catch (ServiceException e) {
+			throw new ServletException();
+		}
+		try {
+			request.setAttribute("nbReservation", ReservationService.getInstance().findAll().size());
 		} catch (ServiceException e) {
 			throw new ServletException();
 		}

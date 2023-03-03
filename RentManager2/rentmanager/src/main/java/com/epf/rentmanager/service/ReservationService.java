@@ -46,7 +46,6 @@ public class ReservationService {
     public List<Reservation> findAll() throws ServiceException {
         try {
             return ReservationDao.getInstance().findAll();
-
         } catch (DaoException e) {
             e.printStackTrace();
             throw new ServiceException();
