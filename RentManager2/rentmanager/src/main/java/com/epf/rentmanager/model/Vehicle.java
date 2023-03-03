@@ -40,6 +40,10 @@ public class Vehicle{
                 '}';
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getMaker() {
         return maker;
     }
