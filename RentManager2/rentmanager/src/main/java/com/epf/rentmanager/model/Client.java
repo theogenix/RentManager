@@ -27,6 +27,10 @@ public class Client{
         this.birthday = birthday;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }

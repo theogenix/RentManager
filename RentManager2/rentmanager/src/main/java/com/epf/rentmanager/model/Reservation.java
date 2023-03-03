@@ -14,6 +14,14 @@ public class Reservation{
         this.start = start;
         this.end = end;
     }
+
+    public Reservation(int client_id, int vehicle_id, LocalDate start, LocalDate end) {
+        this.client_id = client_id;
+        this.vehicle_id = vehicle_id;
+        this.start = start;
+        this.end = end;
+    }
+
     public Reservation(){
         super();
     }
