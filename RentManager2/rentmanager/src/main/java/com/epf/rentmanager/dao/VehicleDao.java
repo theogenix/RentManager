@@ -22,18 +22,18 @@ public class VehicleDao {
 		return instance;
 	}
 	
-	private static final String CREATE_VEHICLE_QUERY = "INSERT INTO Vehicle(constructeur, nb_places) VALUES(?, ?);";
+	private static final String CREATE_VEHICLE_QUERY = "INSERT INTO Vehicle(constructeur, model, nb_places) VALUES(?,?,?);";
 	private static final String DELETE_VEHICLE_QUERY = "DELETE FROM Vehicle WHERE id=?;";
-	private static final String FIND_VEHICLE_QUERY = "SELECT id, constructeur, nb_places FROM Vehicle WHERE id=?;";
-	private static final String FIND_VEHICLES_QUERY = "SELECT id, constructeur, nb_places FROM Vehicle;";
+	private static final String FIND_VEHICLE_QUERY = "SELECT id, constructeur, model, nb_places FROM Vehicle WHERE id=?;";
+	private static final String FIND_VEHICLES_QUERY = "SELECT id, constructeur, model, nb_places FROM Vehicle;";
 	
 	public long create(Vehicle vehicle) throws DaoException {
 		try {
 			Connection connection = ConnectionManager.getConnection();
 			PreparedStatement stmt = connection.prepareStatement(CREATE_VEHICLE_QUERY,Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1,vehicle.getMaker());
-			stmt.setInt(2,vehicle.getNb_places());
-			//stmt.setInt(3, vehicle.getNb_places());
+			stmt.setString(2,vehicle.getModel());
+			stmt.setInt(3,vehicle.getNb_places());
 			return stmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -63,8 +63,9 @@ public class VehicleDao {
 			ResultSet rs = stmt.executeQuery();
 			rs.next();
 			String constructeur=(rs.getString("constructeur"));
+			String model=(rs.getString("model"));
 			int nb_places =(rs.getInt("nb_places"));
-			return new Vehicle((int) id,constructeur,nb_places);
+			return new Vehicle((int) id,constructeur,model,nb_places);
 		} catch (SQLException e) {
 			throw new DaoException();
 		}
@@ -79,9 +80,10 @@ public class VehicleDao {
 			while(rs.next()){
 				int id=(rs.getInt("id"));
 				String constructeur=(rs.getString("constructeur"));
+				String model=(rs.getString("model"));
 				int nb_places =(rs.getInt("nb_places"));
 
-				vehicles.add(new Vehicle(id,constructeur,nb_places));
+				vehicles.add(new Vehicle(id,constructeur,model,nb_places));
 
 			}
 

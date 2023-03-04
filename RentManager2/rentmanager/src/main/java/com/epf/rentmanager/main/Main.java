@@ -15,6 +15,7 @@ import java.util.List;
 public class Main {
 
    public static void main(String argu []) {
+
       try {
          List<Client> clients= ClientService.getInstance().findAll();
          System.out.println(clients);
@@ -24,6 +25,8 @@ public class Main {
       } catch (ServiceException e) {
          throw new RuntimeException(e);
       }
+
+
       try {
          List<Vehicle> vehicles= VehicleService.getInstance().findAll();
          System.out.println(vehicles);
@@ -33,6 +36,7 @@ public class Main {
       } catch (ServiceException e) {
          throw new RuntimeException(e);
       }
+      /*
       try {
          List<Reservation> reservations= ReservationService.getInstance().findAll();
          System.out.println(reservations);
@@ -41,37 +45,41 @@ public class Main {
          }
       } catch (ServiceException e) {
          throw new RuntimeException(e);
-      }
+      }*/
+      /*
+
       try {
          Client client= ClientService.getInstance().findById(1);
          System.out.println(client);
 
       }catch(ServiceException e){
          throw new RuntimeException(e);
-      }
+      }*/
+/*
       try {
-         Vehicle vehicle= VehicleService.getInstance().findById(1);
+         Vehicle vehicle= VehicleService.getInstance().findById(4);
          System.out.println(vehicle);
 
       }catch(ServiceException e){
          throw new RuntimeException(e);
-      }
-      /*
+      }*/
+/*
       try {
          long id_client= ClientService.getInstance().create(new Client("theo","genix","theogenix@gmail.com",LocalDate.of(2001,01,07)));
          System.out.println(id_client);
 
       }catch(ServiceException e){
          throw new RuntimeException(e);
-      }
+      }*/
+/*
       try {
-         long id_vehicle= VehicleService.getInstance().create(new Vehicle("Renault", 5));
+         long id_vehicle= VehicleService.getInstance().create(new Vehicle("Renault","laguna", 5));
          System.out.println(id_vehicle);
 
       }catch(ServiceException e){
          throw new RuntimeException(e);
-      }
-
+      }*/
+/*
       try {
          long id_reservation= ReservationService.getInstance().create(new Reservation(1,1,LocalDate.of(2001,01,01),LocalDate.of(2002,01,01)));
          System.out.println(id_reservation);
@@ -79,7 +87,7 @@ public class Main {
       }catch(ServiceException e){
          throw new RuntimeException(e);
       }
-      */
+*/
 
       /*
       try {

@@ -33,7 +33,7 @@ public class VehicleService {
 			return VehicleDao.getInstance().create(vehicle);
 		}catch(DaoException e){
 			e.printStackTrace();
-			System.out.println("erreur");
+			System.out.println("erreur de création");
 			throw new ServiceException();
 		}
 	}
@@ -42,7 +42,7 @@ public class VehicleService {
 			return VehicleDao.getInstance().delete(id);
 		}catch(DaoException e){
 			e.printStackTrace();
-			System.out.println("erreur");
+			System.out.println("erreur de delete");
 			throw new ServiceException();
 		}
 	}

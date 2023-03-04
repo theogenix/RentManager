@@ -30,6 +30,14 @@ public class Vehicle{
         super();
     }
 
+
+    public Vehicle(int id, String maker, String model, int nb_places) {
+        this.maker = maker;
+        this.model = model;
+        this.nb_places = nb_places;
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Vehicle{" +

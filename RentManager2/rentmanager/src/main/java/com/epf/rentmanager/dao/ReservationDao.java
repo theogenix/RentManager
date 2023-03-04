@@ -65,6 +65,7 @@ public class ReservationDao {
 
 	
 	public List<Reservation> findResaByClientId(long clientId) throws DaoException {
+
 		return new ArrayList<Reservation>();
 	}
 	
