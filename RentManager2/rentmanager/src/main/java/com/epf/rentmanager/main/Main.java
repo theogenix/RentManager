@@ -99,6 +99,14 @@ public class Main {
          throw new RuntimeException(e);
       }
       */
+      /*
+      try {
+         ReservationService.getInstance().delete(2);
+         System.out.println("reservation supprimé");
 
+      }catch(ServiceException e){
+         throw new RuntimeException(e);
+      }
+       */
    }
 }

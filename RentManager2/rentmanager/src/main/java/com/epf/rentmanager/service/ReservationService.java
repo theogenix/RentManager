@@ -42,6 +42,15 @@ public class ReservationService {
         // TODO: récupérer une réservation par son id
         return new Reservation();
     }
+    public long delete(long id) throws ServiceException{
+        try{
+            return ReservationDao.getInstance().delete(id);
+        }catch(DaoException e){
+            e.printStackTrace();
+            System.out.println("erreur");
+            throw new ServiceException();
+        }
+    }
 
     public List<Reservation> findAll() throws ServiceException {
         try {
