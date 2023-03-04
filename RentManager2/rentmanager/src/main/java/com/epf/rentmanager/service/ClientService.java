@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.epf.rentmanager.dao.ClientDao;
+import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
@@ -33,6 +34,15 @@ public class ClientService {
 			return ClientDao.getInstance().create(client);
 		}catch(DaoException e){
 			e.printStackTrace();
+			throw new ServiceException();
+		}
+	}
+	public long delete(long id) throws ServiceException{
+		try{
+			return ClientDao.getInstance().delete(id);
+		}catch(DaoException e){
+			e.printStackTrace();
+			System.out.println("erreur");
 			throw new ServiceException();
 		}
 	}

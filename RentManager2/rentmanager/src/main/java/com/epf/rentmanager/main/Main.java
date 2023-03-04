@@ -50,12 +50,13 @@ public class Main {
          throw new RuntimeException(e);
       }
       try {
-         Vehicle vehicle= VehicleService.getInstance().findById(2);
+         Vehicle vehicle= VehicleService.getInstance().findById(1);
          System.out.println(vehicle);
 
       }catch(ServiceException e){
          throw new RuntimeException(e);
       }
+      /*
       try {
          long id_client= ClientService.getInstance().create(new Client("theo","genix","theogenix@gmail.com",LocalDate.of(2001,01,07)));
          System.out.println(id_client);
@@ -78,5 +79,26 @@ public class Main {
       }catch(ServiceException e){
          throw new RuntimeException(e);
       }
+      */
+
+      /*
+      try {
+         VehicleService.getInstance().delete(2);
+         System.out.println("véhicule supprimé");
+
+      }catch(ServiceException e){
+         throw new RuntimeException(e);
+      }
+      */
+      /*
+      try {
+         ClientService.getInstance().delete(2);
+         System.out.println("client supprimé");
+
+      }catch(ServiceException e){
+         throw new RuntimeException(e);
+      }
+      */
+
    }
 }
