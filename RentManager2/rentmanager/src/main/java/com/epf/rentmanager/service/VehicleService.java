@@ -8,29 +8,30 @@ import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.dao.VehicleDao;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class VehicleService {
 
 	private VehicleDao vehicleDao;
 	public static VehicleService instance;
 	
-	private VehicleService() {
-		this.vehicleDao = VehicleDao.getInstance();
+	private VehicleService(VehicleDao vehicleDao) {
+		this.vehicleDao = vehicleDao;
 	}
-	
+	/*
 	public static VehicleService getInstance() {
 		if (instance == null) {
 			instance = new VehicleService();
 		}
 		
 		return instance;
-	}
+	}*/
 
 	public long create(Vehicle vehicle) throws ServiceException {
 		// TODO: créer un véhicule
 		try{
-			return VehicleDao.getInstance().create(vehicle);
+			return this.vehicleDao.create(vehicle);
 		}catch(DaoException e){
 			e.printStackTrace();
 			System.out.println("erreur de création");
@@ -39,7 +40,7 @@ public class VehicleService {
 	}
 	public long delete(long id) throws ServiceException{
 		try{
-			return VehicleDao.getInstance().delete(id);
+			return this.vehicleDao.delete(id);
 		}catch(DaoException e){
 			e.printStackTrace();
 			System.out.println("erreur de delete");
@@ -49,7 +50,7 @@ public class VehicleService {
 
 	public Vehicle findById(long id) throws ServiceException {
 		try{
-			return VehicleDao.getInstance().findById(id);
+			return this.vehicleDao.findById(id);
 		}catch(DaoException e){
 			e.printStackTrace();
 			throw new ServiceException();
@@ -57,7 +58,7 @@ public class VehicleService {
 	}
 	public List<Vehicle> findAll() throws ServiceException {
 		try {
-			return vehicleDao.getInstance().findAll();
+			return this.vehicleDao.findAll();
 
 		} catch (DaoException e) {
 			e.printStackTrace();

@@ -9,29 +9,21 @@ import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.dao.VehicleDao;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class ReservationService {
     private ReservationDao reservationDao;
     public static ReservationService instance;
 
-    private ReservationService() {
-        this.reservationDao = ReservationDao.getInstance();
+    private ReservationService(ReservationDao reservationDao) {
+        this.reservationDao = reservationDao;
     }
-
-    public static ReservationService getInstance() {
-        if (instance == null) {
-            instance = new ReservationService();
-        }
-
-        return instance;
-    }
-
 
     public long create(Reservation reservation) throws ServiceException {
         // TODO: créer une réservation
         try{
-            return ReservationDao.getInstance().create(reservation);
+            return this.reservationDao.create(reservation);
         }catch(DaoException e){
             e.printStackTrace();
             throw new ServiceException();
@@ -44,7 +36,7 @@ public class ReservationService {
     }
     public long delete(long id) throws ServiceException{
         try{
-            return ReservationDao.getInstance().delete(id);
+            return this.reservationDao.delete(id);
         }catch(DaoException e){
             e.printStackTrace();
             System.out.println("erreur");
@@ -54,7 +46,7 @@ public class ReservationService {
 
     public List<Reservation> findAll() throws ServiceException {
         try {
-            return ReservationDao.getInstance().findAll();
+            return this.reservationDao.findAll();
         } catch (DaoException e) {
             e.printStackTrace();
             throw new ServiceException();

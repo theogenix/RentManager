@@ -5,6 +5,8 @@ import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.service.VehicleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import java.io.IOException;
 import java.util.List;
@@ -22,21 +24,31 @@ public class HomeServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	@Autowired
+	VehicleService vehicleService;
+	@Autowired
+	ClientService clientService;
+	@Autowired
+	ReservationService reservationService;
+	@Override
+	public void init() throws ServletException {
+		super.init();
+		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			request.setAttribute("nbClients", ClientService.getInstance().findAll().size());
+			request.setAttribute("nbClients", this.clientService.findAll().size());
 		} catch (ServiceException e) {
 			throw new ServletException();
 		}
 		try {
-			request.setAttribute("nbVehicle", VehicleService.getInstance().findAll().size());
+			request.setAttribute("nbVehicle", this.vehicleService.findAll().size());
 		} catch (ServiceException e) {
 			throw new ServletException();
 		}
 		try {
-			request.setAttribute("nbReservation", ReservationService.getInstance().findAll().size());
+			request.setAttribute("nbReservation", this.reservationService.findAll().size());
 		} catch (ServiceException e) {
 			throw new ServletException();
 		}

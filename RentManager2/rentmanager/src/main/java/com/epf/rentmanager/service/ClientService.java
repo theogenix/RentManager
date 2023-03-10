@@ -9,29 +9,22 @@ import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ClientService {
 
 	private ClientDao clientDao;
 	public static ClientService instance;
-	
-	private ClientService() {
-		this.clientDao = ClientDao.getInstance();
+
+	private ClientService(ClientDao clientDao){
+		this.clientDao = clientDao;
 	}
-	
-	public static ClientService getInstance() {
-		if (instance == null) {
-			instance = new ClientService();
-		}
-		
-		return instance;
-	}
-	
 	
 	public long create(Client client) throws ServiceException {
 		// TODO: créer un client
 		try{
-			return ClientDao.getInstance().create(client);
+			return this.clientDao.create(client);
 		}catch(DaoException e){
 			e.printStackTrace();
 			throw new ServiceException();
@@ -39,7 +32,7 @@ public class ClientService {
 	}
 	public long delete(long id) throws ServiceException{
 		try{
-			return ClientDao.getInstance().delete(id);
+			return this.clientDao.delete(id);
 		}catch(DaoException e){
 			e.printStackTrace();
 			System.out.println("erreur");
@@ -49,7 +42,7 @@ public class ClientService {
 
 	public Client findById(long id) throws ServiceException {
 		try{
-			return ClientDao.getInstance().findById(id);
+			return this.clientDao.findById(id);
 		}catch(DaoException e){
 			e.printStackTrace();
 			throw new ServiceException();
@@ -59,7 +52,7 @@ public class ClientService {
 
 	public List<Client> findAll() throws ServiceException {
 		try {
-			return ClientDao.getInstance().findAll();
+			return this.clientDao.findAll();
 
 		} catch (DaoException e) {
 			e.printStackTrace();
