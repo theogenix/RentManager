@@ -10,6 +10,7 @@ public class Reservation{
     private LocalDate start;
     private LocalDate end;
     private int id;
+    private boolean a;
 
     public Reservation(int id, LocalDate start, LocalDate end) {
         this.id=id;
@@ -26,11 +27,18 @@ public class Reservation{
     }*/
 
 
-    public Reservation(int client_id, int vehicle_id, LocalDate start, LocalDate end) {
+    public Reservation(int id,int client_id, int vehicle_id, LocalDate start, LocalDate end) {
         this.client_id = client_id;
         this.vehicle_id = vehicle_id;
         this.start = start;
         this.end = end;
+        this.id = id;
+    }
+   public Reservation(int id,int client_id, LocalDate start, LocalDate end) {
+        this.client_id = client_id;
+        this.start = start;
+        this.end = end;
+        this.id = id;
     }
 
     public int getId() {
@@ -86,6 +94,23 @@ public class Reservation{
         return "Reservation{" +
                 "client_id=" + client_id +
                 ", vehicle_id=" + vehicle_id +
+                ", start=" + start +
+                ", end=" + end +
+                ", id=" + id +
+                '}';
+    }
+    public String toString2() {
+        return "Reservation{" +
+                "vehicle_id=" + client_id +
+                ", start=" + start +
+                ", end=" + end +
+                ", id=" + id +
+                '}';
+    }
+
+    public String toString3() {
+        return "Reservation{" +
+                "client_id=" + client_id +
                 ", start=" + start +
                 ", end=" + end +
                 ", id=" + id +

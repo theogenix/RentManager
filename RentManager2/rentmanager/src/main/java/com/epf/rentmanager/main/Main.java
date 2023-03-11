@@ -46,7 +46,7 @@ public class Main {
       } catch (ServiceException e) {
          throw new RuntimeException(e);
       }
-
+*/
       try {
          List<Reservation> reservations= reservationService.findAll();
          System.out.println(reservations);
@@ -57,7 +57,7 @@ public class Main {
          throw new RuntimeException(e);
       }
 
-
+/*
       try {
          Client client= clientService.findById(1);
          System.out.println(client);
@@ -65,7 +65,7 @@ public class Main {
       }catch(ServiceException e){
          throw new RuntimeException(e);
       }
-
+*/
       try {
          Vehicle vehicle= vehicleService.findById(4);
          System.out.println(vehicle);
@@ -73,7 +73,7 @@ public class Main {
       }catch(ServiceException e){
          throw new RuntimeException(e);
       }
-
+/*
       try {
          long id_client= clientService.create(new Client("theo","genix","theogenix@gmail.com",LocalDate.of(2001,01,07)));
          System.out.println(id_client);
@@ -89,7 +89,7 @@ public class Main {
       }catch(ServiceException e){
          throw new RuntimeException(e);
       }
-
+*//*
       try {
          long id_reservation= reservationService.create(new Reservation(2,3,LocalDate.of(2001,01,01),LocalDate.of(2002,01,01)));
          System.out.println(id_reservation);
@@ -98,7 +98,7 @@ public class Main {
          throw new RuntimeException(e);
       }
 
-
+*/
       /*
       try {
          vehicleService.delete(2);
@@ -117,7 +117,7 @@ public class Main {
          throw new RuntimeException(e);
       }
 
-
+*//*
       try {
          reservationService.delete(2);
          System.out.println("reservation supprimé");
@@ -125,15 +125,23 @@ public class Main {
       }catch(ServiceException e){
          throw new RuntimeException(e);
       }
-
+/**/
 
       try {
-         Reservation reservation= reservationService.findById(1);
-         System.out.println(reservation);
+         Reservation reservation= reservationService.findByIdClient(2);
+         System.out.println(reservation.toString2());
 
       }catch(ServiceException e){
          throw new RuntimeException(e);
       }
-*/
+
+      try {
+         Reservation reservation= reservationService.findByIdVehicle(3);
+         System.out.println(reservation.toString3());
+
+      }catch(ServiceException e){
+         throw new RuntimeException(e);
+      }
+
    }
 }

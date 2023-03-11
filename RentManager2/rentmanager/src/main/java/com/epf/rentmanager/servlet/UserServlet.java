@@ -30,4 +30,5 @@ public class UserServlet extends HttpServlet {
         }
         this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/list.jsp").forward(req,resp);
     }
+
 }

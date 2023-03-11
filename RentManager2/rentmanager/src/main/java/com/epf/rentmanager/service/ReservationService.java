@@ -30,9 +30,21 @@ public class ReservationService {
         }
     }
 
-    public Reservation findById(long id) throws ServiceException {
-        // TODO: récupérer une réservation par son id
-        return new Reservation();
+    public Reservation findByIdClient(long id) throws ServiceException {
+        try{
+            return this.reservationDao.findResaByClientId(id);
+        }catch(DaoException e){
+            e.printStackTrace();
+            throw new ServiceException();
+        }
+    }
+    public Reservation findByIdVehicle(long id) throws ServiceException {
+        try{
+            return this.reservationDao.findResaByVehicleId(id);
+        }catch(DaoException e){
+            e.printStackTrace();
+            throw new ServiceException();
+        }
     }
     public long delete(long id) throws ServiceException{
         try{
