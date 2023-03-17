@@ -47,7 +47,7 @@ public class UserCreateServlet extends HttpServlet {
         } catch (ServiceException e) {
             e.printStackTrace();
         }
-        resp.sendRedirect("/rentmanager/users/create");
+        resp.sendRedirect("/rentmanager/users");
     }
 
 
