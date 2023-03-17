@@ -1,5 +1,6 @@
 package com.epf.rentmanager.servlet;
 
+
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.service.ClientService;
@@ -12,9 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-@WebServlet("/users")
-public class UserServlet extends HttpServlet {
+@WebServlet("/users/create")
+public class UserCreateServlet extends HttpServlet {
     @Autowired
     ClientService clientService;
     @Override
@@ -24,12 +27,27 @@ public class UserServlet extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/create.jsp").forward(req,resp);
+    }
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String nom;
+        String prenom;
+        String email;
+        LocalDate birthday;
+        nom = req.getParameter("first_name");
+        prenom = req.getParameter("last_name");
+        email = req.getParameter("email");
+        //System.out.println(req.getParameter("naissance"));
+        birthday = LocalDate.parse(req.getParameter("naissance"), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+        Client client = new Client(nom, prenom, email, birthday);
         try {
-            req.setAttribute("clients",this.clientService.findAll());
+            this.clientService.create(client);
         } catch (ServiceException e) {
             e.printStackTrace();
         }
-        this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/list.jsp").forward(req,resp);
+        resp.sendRedirect("/rentmanager/users/create");
     }
 
 
