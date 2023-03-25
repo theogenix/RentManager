@@ -11,25 +11,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.epf.rentmanager.model.Client;
+import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.persistence.ConnectionManager;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Reservation;
+import com.epf.rentmanager.service.ClientService;
+import com.epf.rentmanager.service.VehicleService;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class ReservationDao {
 
 	private static ReservationDao instance = null;
-	private ReservationDao() {}
+	private ReservationDao() {
+
+	}
 	
 	private static final String CREATE_RESERVATION_QUERY = "INSERT INTO Reservation(client_id, vehicle_id, debut, fin) VALUES(?, ?, ?, ?);";
 	private static final String DELETE_RESERVATION_QUERY = "DELETE FROM Reservation WHERE id=?;";
 	private static final String FIND_RESERVATIONS_BY_CLIENT_QUERY = "SELECT id, vehicle_id, debut, fin FROM Reservation WHERE client_id=?;";
 	private static final String FIND_RESERVATIONS_BY_VEHICLE_QUERY = "SELECT id, client_id, debut, fin FROM Reservation WHERE vehicle_id=?;";
 	private static final String FIND_RESERVATIONS_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation;";
-		
+	ClientService clientService;
 	public long create(Reservation reservation) throws DaoException {
 		try {
 			Connection connection = ConnectionManager.getConnection();
@@ -73,7 +78,7 @@ public class ReservationDao {
 		}
 	}
 
-	public  Reservation findResaByClientId(long clientId) throws DaoException {
+	public  Reservation findResaByClientId(long clientId ) throws DaoException {
 		try {
 			Connection connection = ConnectionManager.getConnection();
 			PreparedStatement stmt = connection.prepareStatement(FIND_RESERVATIONS_BY_CLIENT_QUERY);
@@ -129,5 +134,30 @@ public class ReservationDao {
 
 		return reservations;
 		//return new ArrayList<Reservation>();
-	}
+	}/*
+public List<Reservation> findAll() throws DaoException {
+		List<Reservation> reservations=new ArrayList<Reservation>();
+		try {
+			Connection connection=ConnectionManager.getConnection();
+			Statement statement=connection.createStatement();
+			ResultSet rs=statement.executeQuery(FIND_RESERVATIONS_QUERY);
+			while(rs.next()){
+				int id=(rs.getInt("id"));
+				Client client= clientService.findById(rs.getInt("client_id"));
+				Vehicle vehicle = VehicleService.instance.findById(rs.getInt("vehicle_id"));
+				LocalDate start=(rs.getDate("debut").toLocalDate());
+				LocalDate end=(rs.getDate("fin").toLocalDate());
+				reservations.add(new Reservation(id,client,vehicle,start,end));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException();
+		} catch (ServiceException e) {
+			throw new RuntimeException(e);
+		}
+
+	return reservations;
+		//return new ArrayList<Reservation>();
+	}*/
 }

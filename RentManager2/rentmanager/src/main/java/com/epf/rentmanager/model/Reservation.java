@@ -2,43 +2,40 @@ package com.epf.rentmanager.model;
 import java.time.LocalDate;
 
 public class Reservation{
+    private int id;
+    private String nom;
+    private String prenom;
+    private String email;
+    private LocalDate birthday;
     private Client client;
+
     private Vehicle vehicle;
 
     private int client_id;
     private int vehicle_id;
     private LocalDate start;
     private LocalDate end;
-    private int id;
     private boolean a;
+
 
     public Reservation(int id, LocalDate start, LocalDate end) {
         this.id=id;
         this.start = start;
         this.end = end;
     }
-    /*
-    public Reservation(int id, Client client, Vehicle vehicle,LocalDate start,LocalDate end){
-        this.id=id;
-        this.client=client;
-        this.vehicle=vehicle;
-        this.start=start;
-        this.end=end;
-    }*/
 
-
-    public Reservation(int id,int client_id, int vehicle_id, LocalDate start, LocalDate end) {
+    public Reservation(int id, int client_id, int vehicle_id, LocalDate start, LocalDate end) {
         this.client_id = client_id;
         this.vehicle_id = vehicle_id;
         this.start = start;
         this.end = end;
         this.id = id;
     }
-   public Reservation(int id,int client_id, LocalDate start, LocalDate end) {
+   public Reservation(int vehicle_id,int client_id, LocalDate start, LocalDate end) {
         this.client_id = client_id;
         this.start = start;
         this.end = end;
-        this.id = id;
+        this.vehicle_id=vehicle_id;
     }
 
     public int getId() {

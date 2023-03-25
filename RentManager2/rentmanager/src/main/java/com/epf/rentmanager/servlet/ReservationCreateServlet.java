@@ -43,7 +43,7 @@ public class ReservationCreateServlet extends HttpServlet {
         //System.out.println(req.getParameter("naissance"));
         end = LocalDate.parse(req.getParameter("end"), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
-        Reservation reservation = new Reservation(client_id,vehicle_id,start, end);
+        Reservation reservation = new Reservation(client_id,vehicle_id,start,end);
         try {
             this.reservationService.create(reservation);
         } catch (ServiceException e) {
