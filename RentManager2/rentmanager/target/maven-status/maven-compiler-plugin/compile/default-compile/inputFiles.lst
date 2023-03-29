@@ -22,6 +22,7 @@ C:\Users\theog\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com
 C:\Users\theog\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehiculeDeleteServlet.java
 C:\Users\theog\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\dao\ReservationDao.java
 C:\Users\theog\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\dao\VehicleDao.java
+C:\Users\theog\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\servlet\ReservationDeleteServlet.java
 C:\Users\theog\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\model\Reservation.java
 C:\Users\theog\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\servlet\UserCreateServlet.java
 C:\Users\theog\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\persistence\ConnectionManager.java
