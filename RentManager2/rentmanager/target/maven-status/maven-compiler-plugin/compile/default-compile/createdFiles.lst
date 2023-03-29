@@ -23,4 +23,5 @@ com\epf\rentmanager\servlet\UserServlet.class
 com\epf\rentmanager\exception\Exception_client.class
 com\epf\rentmanager\service\ClientService.class
 com\epf\rentmanager\dao\VehicleDao.class
+com\epf\rentmanager\servlet\UserDeleteServlet.class
 com\epf\rentmanager\model\Client.class

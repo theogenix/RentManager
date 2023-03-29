@@ -21,6 +21,8 @@ import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.VehicleService;
 import org.springframework.stereotype.Repository;
 
+import javax.naming.spi.ResolveResult;
+
 @Repository
 public class ReservationDao {
 
@@ -35,6 +37,9 @@ public class ReservationDao {
 	private static final String FIND_RESERVATIONS_BY_VEHICLE_QUERY = "SELECT id, client_id, debut, fin FROM Reservation WHERE vehicle_id=?;";
 	private static final String FIND_RESERVATIONS_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation;";
 	ClientService clientService;
+	public long getVehicle_id(Reservation reservation){
+		return reservation.getVehicle_id();
+	}
 	public long create(Reservation reservation) throws DaoException {
 		try {
 			Connection connection = ConnectionManager.getConnection();

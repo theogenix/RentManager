@@ -20,6 +20,15 @@ public class ReservationService {
         this.reservationDao = reservationDao;
     }
 
+/*
+    public long getVehcile_id(ReservationDao reservationDao){
+        return reservationDao.getVehicle_id(reservation);
+    }*/
+
+    private long getVehicle_id() {
+        return 0;
+    }
+
     public long create(Reservation reservation) throws ServiceException {
         // TODO: créer une réservation
         try{

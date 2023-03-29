@@ -1,11 +1,9 @@
 package com.epf.rentmanager.servlet;
 
-import com.epf.rentmanager.dao.ReservationDao;
+
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.service.ClientService;
-import com.epf.rentmanager.service.ReservationService;
-import com.epf.rentmanager.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
@@ -18,14 +16,10 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-@WebServlet("/users/details")
-public class UserDetailsServlet extends HttpServlet {
+@WebServlet("/users/delete")
+public class UserDeleteServlet extends HttpServlet {
     @Autowired
     ClientService clientService;
-    @Autowired
-    ReservationService reservationService;
-    @Autowired
-    VehicleService vehicleService;
     @Override
     public void init() throws ServletException {
         super.init();
@@ -33,16 +27,19 @@ public class UserDetailsServlet extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        long client_id = Integer.parseInt(req.getParameter("id"));
+
+        this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/delete.jsp").forward(req,resp);
+    }
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        long client_id;
+        client_id= Long.parseLong(req.getParameter("client_id"));
         try {
-            //Client client=new Client();
-            req.setAttribute("clients",this.clientService.findById(client_id));
-            req.setAttribute("reservations",this.reservationService.findByIdClient(client_id));
-            //req.setAttribute("vehicles",this.vehicleService.findById(reservationService.getVehcile_id(reservationService)));
+            this.clientService.delete(client_id);
         } catch (ServiceException e) {
             e.printStackTrace();
         }
-        this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/details.jsp").forward(req,resp);
+        resp.sendRedirect("/rentmanager/users");
     }
+
 
 }
