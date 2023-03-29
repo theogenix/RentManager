@@ -19,6 +19,7 @@ com\epf\rentmanager\servlet\VehiculeServlet.class
 com\epf\rentmanager\service\ReservationService.class
 com\epf\rentmanager\utils\IOUtils.class
 com\epf\rentmanager\persistence\FillDatabase.class
+com\epf\rentmanager\servlet\VehiculeDeleteServlet.class
 com\epf\rentmanager\servlet\UserServlet.class
 com\epf\rentmanager\exception\Exception_client.class
 com\epf\rentmanager\service\ClientService.class
