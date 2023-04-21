@@ -28,19 +28,12 @@ public class VehiculeDeleteServlet extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        this.getServletContext().getRequestDispatcher("/WEB-INF/views/vehicles/delete.jsp").forward(req,resp);
-    }
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        long vehicle_id;
-        vehicle_id= Long.parseLong(req.getParameter("vehicle_id"));
         try {
-            this.vehicleService.delete(vehicle_id);
+            long id = Long.parseLong(req.getParameter("id"));
+            vehicleService.delete(id);
         } catch (ServiceException e) {
             e.printStackTrace();
         }
         resp.sendRedirect("/rentmanager/cars");
     }
-
-
 }

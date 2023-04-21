@@ -16,8 +16,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-@WebServlet("/users/delete")
-public class UserDeleteServlet extends HttpServlet {
+@WebServlet("/users/update")
+public class UserUpdateServlet extends HttpServlet {
     @Autowired
     ClientService clientService;
     @Override
@@ -29,10 +29,33 @@ public class UserDeleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             long id = Long.parseLong(req.getParameter("id"));
-            clientService.delete(id);
+            req.setAttribute("client",clientService.findById(id));
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
+        req.getServletContext().getRequestDispatcher("/WEB-INF/views/users/update.jsp").forward(req, resp);
+    }
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String nom;
+        String prenom;
+        String email;
+        LocalDate birthday;
+
+        long id = Long.parseLong(req.getParameter("id"));
+        nom = req.getParameter("first_name");
+        prenom = req.getParameter("last_name");
+        email = req.getParameter("email");
+        //System.out.println(req.getParameter("naissance"));
+        birthday = LocalDate.parse(req.getParameter("naissance"), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+        Client client = new Client((int)id,nom, prenom, email, birthday);
+        try {
+            this.clientService.update(client);
         } catch (ServiceException e) {
             e.printStackTrace();
         }
         resp.sendRedirect("/rentmanager/users");
     }
+
+
 }

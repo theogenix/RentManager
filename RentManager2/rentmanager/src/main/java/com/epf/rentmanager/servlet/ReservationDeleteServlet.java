@@ -28,19 +28,12 @@ public class ReservationDeleteServlet extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        this.getServletContext().getRequestDispatcher("/WEB-INF/views/rents/delete.jsp").forward(req,resp);
-    }
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        long rents_id;
-        rents_id= Long.parseLong(req.getParameter("rents_id"));
         try {
-            this.reservationService.delete(rents_id);
+            long id = Long.parseLong(req.getParameter("id"));
+            reservationService.delete(id);
         } catch (ServiceException e) {
             e.printStackTrace();
         }
         resp.sendRedirect("/rentmanager/rents");
     }
-
-
 }

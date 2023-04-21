@@ -30,6 +30,15 @@ public class ClientService {
 			throw new ServiceException();
 		}
 	}
+	public long update(Client client) throws ServiceException {
+		// TODO: modifier un client
+		try{
+			return this.clientDao.update(client);
+		}catch(DaoException e){
+			e.printStackTrace();
+			throw new ServiceException();
+		}
+	}
 	public long delete(long id) throws ServiceException{
 		try{
 			return this.clientDao.delete(id);

@@ -16,6 +16,7 @@ com\epf\rentmanager\servlet\HomeServlet.class
 com\epf\rentmanager\dao\ClientDao.class
 com\epf\rentmanager\configuration\AppConfiguration.class
 com\epf\rentmanager\servlet\VehiculeServlet.class
+com\epf\rentmanager\servlet\UserUpdateServlet.class
 com\epf\rentmanager\service\ReservationService.class
 com\epf\rentmanager\utils\IOUtils.class
 com\epf\rentmanager\persistence\FillDatabase.class

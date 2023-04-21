@@ -25,7 +25,7 @@ public class Main {
       VehicleService vehicleService = context.getBean(VehicleService.class);
       ReservationService reservationService = context.getBean(ReservationService.class);
 
-/*
+
       try {
          List<Client> clients= clientService.findAll();
          System.out.println(clients);
@@ -34,7 +34,7 @@ public class Main {
          }
       } catch (ServiceException e) {
          throw new RuntimeException(e);
-      }*/
+      }
 
 /*
       try {
@@ -82,6 +82,16 @@ public class Main {
       }catch(ServiceException e){
          throw new RuntimeException(e);
       }
+      */
+
+      try {
+         clientService.update(new Client("theo","genix","theogenix@gmail.com",LocalDate.of(2001,01,07)));
+
+
+      }catch(ServiceException e){
+         throw new RuntimeException(e);
+      }
+      /*
 
       try {
          long id_vehicle= vehicleService.create(new Vehicle("Renault","laguna", 5));

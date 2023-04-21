@@ -25,20 +25,40 @@
                     <!-- Horizontal Form -->
                     <div class="box">
                         <!-- form start -->
-                        <form class="form-horizontal" method="post" >
+                        <form class="form-horizontal" method="post">
+
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="client_id" class="col-sm-2 control-label">id du client</label>
+                                    <label for="last_name" class="col-sm-2 control-label">Nom</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="client_id" name="client_id" placeholder="client_id">
+                                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Nom">
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="first_name" class="col-sm-2 control-label">Prenom</label>
 
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Prenom">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label">Email</label>
+
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                      <label for="birthday" class="col-sm-2 control-label">Birthday</label>
+                                     <div class="col-sm-10">
+                                         <input type="birthday" class="form-control" id="naissance" name="naissance" placeholder="Birthday">
+                                     </div>
+                                </div>
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-info pull-right">Supprimer</button>
+                                <button type="submit" class="btn btn-info pull-right">Modifier</button>
                             </div>
                             <!-- /.box-footer -->
                         </form>
