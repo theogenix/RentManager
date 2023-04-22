@@ -29,7 +29,10 @@ public class UserDeleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             long id = Long.parseLong(req.getParameter("id"));
+            String strId2 = req.getParameter("first_name");
+            System.out.println("La valeur de la chaîne de caractères est : " + strId2);
             clientService.delete(id);
+
         } catch (ServiceException e) {
             e.printStackTrace();
         }

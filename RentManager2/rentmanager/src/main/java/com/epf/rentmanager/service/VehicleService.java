@@ -38,6 +38,16 @@ public class VehicleService {
 			throw new ServiceException();
 		}
 	}
+	public long update(Vehicle vehicle) throws ServiceException {
+		// TODO: modifier un véhicule
+		try{
+			return this.vehicleDao.update(vehicle);
+		}catch(DaoException e){
+			e.printStackTrace();
+			System.out.println("erreur de modification");
+			throw new ServiceException();
+		}
+	}
 	public long delete(long id) throws ServiceException{
 		try{
 			return this.vehicleDao.delete(id);

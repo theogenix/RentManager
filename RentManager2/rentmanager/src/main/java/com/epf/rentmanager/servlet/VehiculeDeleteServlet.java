@@ -29,6 +29,10 @@ public class VehiculeDeleteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
+            String strId = req.getParameter("id");
+            System.out.println("La valeur de la chaîne de caractères est : " + strId);
+            String strId2 = req.getParameter("maker");
+            System.out.println("La valeur de la chaîne de caractères est : " + strId2);
             long id = Long.parseLong(req.getParameter("id"));
             vehicleService.delete(id);
         } catch (ServiceException e) {

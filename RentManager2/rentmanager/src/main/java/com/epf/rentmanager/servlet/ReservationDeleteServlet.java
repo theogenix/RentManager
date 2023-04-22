@@ -1,8 +1,10 @@
 package com.epf.rentmanager.servlet;
 
 
+import com.epf.rentmanager.dao.ReservationDao;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
+import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,11 @@ public class ReservationDeleteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
+            String strId = req.getParameter("id");
+            System.out.println("La valeur de la chaîne de caractères est : " + strId);
             long id = Long.parseLong(req.getParameter("id"));
+            String strId2 = req.getParameter("client_id");
+            System.out.println("La valeur de la chaîne de caractères est : " + strId2);
             reservationService.delete(id);
         } catch (ServiceException e) {
             e.printStackTrace();

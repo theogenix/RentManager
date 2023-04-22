@@ -100,6 +100,40 @@ public class ReservationDao {
 		}
 	}
 
+	/*
+	public List<Reservation> findResaByClientId(long clientId) throws DaoException {
+
+		try {
+			Connection connexion = ConnectionManager.getConnection();
+
+			PreparedStatement statement = connexion.prepareStatement(FIND_RESERVATIONS_BY_CLIENT_QUERY);
+
+			statement.setLong(1, clientId);
+
+			ResultSet rs = statement.executeQuery();
+
+			List<Reservation> reservations = new ArrayList<>();
+
+
+			while (rs.next()) {
+				Client client = clientService.findById(clientId);
+				Vehicle vehicle = vehicleService.findById(rs.getLong("vehicle_id"));
+
+				reservations.add(new Reservation(rs.getLong("id"),
+						client, vehicle,
+						rs.getDate("debut").toLocalDate(),
+						rs.getDate("fin").toLocalDate()));
+			}
+			return reservations;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	 */
+
 	public  Reservation findResaByVehicleId(long vehicleID) throws DaoException {
 		try {
 			Connection connection = ConnectionManager.getConnection();
