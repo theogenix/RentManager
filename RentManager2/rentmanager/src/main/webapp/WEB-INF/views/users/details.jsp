@@ -24,10 +24,10 @@
 
                             <ul class="list-group list-group-unbordered">
                                 <li class="list-group-item">
-                                    <b>Reservation(s)</b> <a class="pull-right">2</a>
+                                    <b>Reservation(s)</b> <a class="pull-right">${nb_reservation}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Voiture(s)</b> <a class="pull-right">3</a>
+                                    <b>Voiture(s)</b> <a class="pull-right">${nb_vehicle}</a>
                                 </li>
                             </ul>
                         </div>
@@ -47,23 +47,17 @@
                                 <div class="box-body no-padding">
                                     <table class="table table-striped">
                                         <tr>
-                                            <th style="width: 10px">#</th>
                                             <th>Voiture</th>
                                             <th>Date de debut</th>
                                             <th>Date de fin</th>
                                         </tr>
+                                        <c:forEach items="${reservations}" var="reservations">
                                         <tr>
-                                            <td>${reservations.id}</td>
                                             <td>${reservations.vehicle_id}</td>
                                             <td>${reservations.start}</td>
                                             <td>${reservations.end}</td>
                                         </tr>
-                                        <tr>
-                                            <td>7.</td>
-                                            <td>Peugeot 207</td>
-                                            <td>10/01/2018</td>
-                                            <td>12/01/2018</td>
-                                        </tr>
+                                        </c:forEach>
                                     </table>
                                 </div>
                             </div>
@@ -78,24 +72,14 @@
                                             <th>Constructeur</th>
                                             <th style=>Nombre de places</th>
                                         </tr>
+                                        <c:forEach items="${vehicles}" var="vehicles">
                                         <tr>
                                             <td>${vehicles.id}</td>
                                             <td>${vehicles.maker}</td>
                                             <td>${vehicles.model}</td>
                                             <td>${vehicles.nb_places}</td>
                                         </tr>
-                                        <tr>
-                                            <td>2.</td>
-                                            <td>Peugeot</td>
-                                            <td>206</td>
-                                            <td>5</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3.</td>
-                                            <td>Volkswagen</td>
-                                            <td>Touran</td>
-                                            <td>7</td>
-                                        </tr>
+                                        </c:forEach>
                                     </table>
                                 </div>
                             </div>

@@ -38,6 +38,13 @@ public class Reservation{
         this.vehicle_id=vehicle_id;
     }
 
+    public Reservation(Client client, Vehicle vehicle, LocalDate start, LocalDate end) {
+        this.client = client;
+        this.vehicle = vehicle;
+        this.start = start;
+        this.end = end;
+    }
+
     public int getId() {
         return id;
     }

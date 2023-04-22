@@ -39,7 +39,7 @@ public class ReservationService {
         }
     }
 
-    public Reservation findByIdClient(long id) throws ServiceException {
+    public List <Reservation> findByIdClient(long id) throws ServiceException {
         try{
             return this.reservationDao.findResaByClientId(id);
         }catch(DaoException e){
@@ -47,7 +47,7 @@ public class ReservationService {
             throw new ServiceException();
         }
     }
-    public Reservation findByIdVehicle(long id) throws ServiceException {
+    public List<Reservation> findByIdVehicle(long id) throws ServiceException {
         try{
             return this.reservationDao.findResaByVehicleId(id);
         }catch(DaoException e){
