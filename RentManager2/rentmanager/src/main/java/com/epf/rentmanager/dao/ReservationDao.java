@@ -131,7 +131,7 @@ public class ReservationDao {
 
 		try {
 			Connection connexion = ConnectionManager.getConnection();
-			PreparedStatement statement = connexion.prepareStatement(FIND_RESERVATIONS_BY_CLIENT_QUERY);
+			PreparedStatement statement = connexion.prepareStatement(FIND_RESERVATIONS_BY_VEHICLE_QUERY);
 			statement.setLong(1, vehicleId);
 			ResultSet rs = statement.executeQuery();
 			List<Reservation> reservations = new ArrayList<>();

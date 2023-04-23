@@ -20,14 +20,14 @@
                     <!-- Profile Image -->
                     <div class="box box-primary">
                         <div class="box-body box-profile">
-                            <h3 class="profile-username text-center">${vehicles.name} ${vehicles.surname} (${vehicles.email})</h3>
+                            <h3 class="profile-username text-center">${vehicles.maker} ${vehicles.model} (${vehicles.nb_places})</h3>
 
                             <ul class="list-group list-group-unbordered">
                                 <li class="list-group-item">
-                                    <b>Reservation(s)</b> <a class="pull-right">2</a>
+                                    <b>Reservation(s)</b> <a class="pull-right">${nb_reservation}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Voiture(s)</b> <a class="pull-right">3</a>
+                                    <b>Client(s)</b> <a class="pull-right">${nb_client}</a>
                                 </li>
                             </ul>
                         </div>
@@ -40,30 +40,24 @@
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#rents" data-toggle="tab">Reservations</a></li>
-                            <li><a href="#cars" data-toggle="tab">Voitures</a></li>
+                            <li><a href="#cars" data-toggle="tab">Clients</a></li>
                         </ul>
                         <div class="tab-content">
                             <div class="active tab-pane" id="rents">
                                 <div class="box-body no-padding">
                                     <table class="table table-striped">
                                         <tr>
-                                            <th style="width: 10px">#</th>
-                                            <th>Voiture</th>
+                                            <th>Client</th>
                                             <th>Date de debut</th>
                                             <th>Date de fin</th>
                                         </tr>
+                                        <c:forEach items="${reservations}" var="reservations">
                                         <tr>
-                                            <td>${reservations.id}</td>
-                                            <td>${reservations.vehicle_id}</td>
+                                            <td>${reservations.client_id}</td>
                                             <td>${reservations.start}</td>
                                             <td>${reservations.end}</td>
                                         </tr>
-                                        <tr>
-                                            <td>7.</td>
-                                            <td>Peugeot 207</td>
-                                            <td>10/01/2018</td>
-                                            <td>12/01/2018</td>
-                                        </tr>
+                                        </c:forEach>
                                     </table>
                                 </div>
                             </div>
@@ -74,28 +68,18 @@
                                     <table class="table table-striped">
                                         <tr>
                                             <th style="width: 10px">#</th>
-                                            <th>Modele</th>
-                                            <th>Constructeur</th>
-                                            <th style=>Nombre de places</th>
+                                            <th>Nom</th>
+                                            <th>Prenom</th>
+                                            <th style=>email</th>
                                         </tr>
+                                        <c:forEach items="${clients}" var="clients">
                                         <tr>
-                                            <td>${vehicles.id}</td>
-                                            <td>${vehicles.maker}</td>
-                                            <td>${vehicles.model}</td>
-                                            <td>${vehicles.nb_places}</td>
+                                            <td>${clients.id}</td>
+                                            <td>${clients.name}</td>
+                                            <td>${clients.surname}</td>
+                                            <td>${clients.email}</td>
                                         </tr>
-                                        <tr>
-                                            <td>2.</td>
-                                            <td>Peugeot</td>
-                                            <td>206</td>
-                                            <td>5</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3.</td>
-                                            <td>Volkswagen</td>
-                                            <td>Touran</td>
-                                            <td>7</td>
-                                        </tr>
+                                        </c:forEach>
                                     </table>
                                 </div>
                             </div>
