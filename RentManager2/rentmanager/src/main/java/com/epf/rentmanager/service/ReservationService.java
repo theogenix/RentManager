@@ -38,6 +38,15 @@ public class ReservationService {
             throw new ServiceException();
         }
     }
+    public long update(Reservation reservation) throws ServiceException {
+        // TODO: modifier une reservation
+        try{
+            return this.reservationDao.update(reservation);
+        }catch(DaoException e){
+            e.printStackTrace();
+            throw new ServiceException();
+        }
+    }
 
     public List <Reservation> findByIdClient(long id) throws ServiceException {
         try{
@@ -72,5 +81,14 @@ public class ReservationService {
             e.printStackTrace();
             throw new ServiceException();
         }
+    }
+    public Reservation findById(long id) throws ServiceException {
+        try{
+            return this.reservationDao.findById(id);
+        }catch(DaoException e){
+            e.printStackTrace();
+            throw new ServiceException();
+        }
+        // TODO: récupérer un client par son id
     }
 }
