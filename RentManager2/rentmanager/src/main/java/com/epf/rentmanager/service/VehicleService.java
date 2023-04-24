@@ -19,23 +19,13 @@ public class VehicleService {
 	private VehicleService(VehicleDao vehicleDao) {
 		this.vehicleDao = vehicleDao;
 	}
-	/*
-	public static VehicleService getInstance() {
-		if (instance == null) {
-			instance = new VehicleService();
-		}
-		
-		return instance;
-	}*/
-
 	public long create(Vehicle vehicle) throws ServiceException {
 		// TODO: créer un véhicule
 		try{
 			return this.vehicleDao.create(vehicle);
 		}catch(DaoException e){
 			e.printStackTrace();
-			System.out.println("erreur de création");
-			throw new ServiceException();
+			throw new ServiceException("An error occurred while creating the vehicle.");
 		}
 	}
 	public long update(Vehicle vehicle) throws ServiceException {
@@ -45,7 +35,7 @@ public class VehicleService {
 		}catch(DaoException e){
 			e.printStackTrace();
 			System.out.println("erreur de modification");
-			throw new ServiceException();
+			throw new ServiceException("An error occurred while updating the vehicle.");
 		}
 	}
 	public long delete(long id) throws ServiceException{
@@ -54,7 +44,7 @@ public class VehicleService {
 		}catch(DaoException e){
 			e.printStackTrace();
 			System.out.println("erreur de delete");
-			throw new ServiceException();
+			throw new ServiceException("An error occurred while deleting the vehicle.");
 		}
 	}
 
@@ -63,7 +53,7 @@ public class VehicleService {
 			return this.vehicleDao.findById(id);
 		}catch(DaoException e){
 			e.printStackTrace();
-			throw new ServiceException();
+			throw new ServiceException("An error occurred while finding by id the vehicle.");
 		}
 	}
 	public List<Vehicle> findAll() throws ServiceException {
@@ -72,7 +62,7 @@ public class VehicleService {
 
 		} catch (DaoException e) {
 			e.printStackTrace();
-			throw new ServiceException();
+			throw new ServiceException("An error occurred while finding vehicles.");
 		}
 	}
 

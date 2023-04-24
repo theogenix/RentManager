@@ -40,6 +40,7 @@ public class ClientDao {
     private static final String FIND_CLIENT_QUERY = "SELECT nom, prenom, email, naissance FROM Client WHERE id=?;";
     private static final String FIND_CLIENTS_QUERY = "SELECT id, nom, prenom, email, naissance FROM Client;";
     private static final String UPDATE_CLIENT_QUERY = "UPDATE Client SET nom = ?, prenom = ?, email = ?, naissance = ? WHERE id=?;";
+    private static final String FIND_CLIENT_BY_EMAIL_QUERY = "SELECT id,nom, prenom, naissance FROM Client WHERE email=?;";
 
     public long create(Client client) throws DaoException {
         try {
@@ -95,6 +96,22 @@ public class ClientDao {
             String nom = (rs.getString("nom"));
             String prenom = (rs.getString("prenom"));
             String email = (rs.getString("email"));
+            LocalDate birthday = (rs.getDate("naissance").toLocalDate());
+            return new Client((int) id,nom,prenom,email,birthday);
+        } catch (SQLException e) {
+            throw new DaoException();
+        }
+    }
+    public Client findByEmail(String email) throws DaoException {
+        try {
+            Connection connection = ConnectionManager.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(FIND_CLIENT_BY_EMAIL_QUERY);
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            int id=(rs.getInt("id"));
+            String nom = (rs.getString("nom"));
+            String prenom = (rs.getString("prenom"));
             LocalDate birthday = (rs.getDate("naissance").toLocalDate());
             return new Client((int) id,nom,prenom,email,birthday);
         } catch (SQLException e) {

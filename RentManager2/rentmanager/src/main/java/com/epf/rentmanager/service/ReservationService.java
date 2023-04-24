@@ -35,7 +35,7 @@ public class ReservationService {
             return this.reservationDao.create(reservation);
         }catch(DaoException e){
             e.printStackTrace();
-            throw new ServiceException();
+            throw new ServiceException("An error occurred while creating the rent.");
         }
     }
     public long update(Reservation reservation) throws ServiceException {
@@ -44,7 +44,7 @@ public class ReservationService {
             return this.reservationDao.update(reservation);
         }catch(DaoException e){
             e.printStackTrace();
-            throw new ServiceException();
+            throw new ServiceException("An error occurred while updating the rent.");
         }
     }
 
@@ -53,7 +53,7 @@ public class ReservationService {
             return this.reservationDao.findResaByClientId(id);
         }catch(DaoException e){
             e.printStackTrace();
-            throw new ServiceException();
+            throw new ServiceException("An error occurred while finding by client id the rent.");
         }
     }
     public List<Reservation> findByIdVehicle(long id) throws ServiceException {
@@ -61,7 +61,7 @@ public class ReservationService {
             return this.reservationDao.findResaByVehicleId(id);
         }catch(DaoException e){
             e.printStackTrace();
-            throw new ServiceException();
+            throw new ServiceException("An error occurred while finding by vehicle id the rent.");
         }
     }
     public long delete(long id) throws ServiceException{
@@ -70,7 +70,7 @@ public class ReservationService {
         }catch(DaoException e){
             e.printStackTrace();
             System.out.println("erreur");
-            throw new ServiceException();
+            throw new ServiceException("An error occurred while deleting the rent.");
         }
     }
 
@@ -79,7 +79,7 @@ public class ReservationService {
             return this.reservationDao.findAll();
         } catch (DaoException e) {
             e.printStackTrace();
-            throw new ServiceException();
+            throw new ServiceException("An error occurred while finding rents.");
         }
     }
     public Reservation findById(long id) throws ServiceException {
@@ -87,7 +87,7 @@ public class ReservationService {
             return this.reservationDao.findById(id);
         }catch(DaoException e){
             e.printStackTrace();
-            throw new ServiceException();
+            throw new ServiceException("An error occurred while finding by id the rent.");
         }
         // TODO: récupérer un client par son id
     }

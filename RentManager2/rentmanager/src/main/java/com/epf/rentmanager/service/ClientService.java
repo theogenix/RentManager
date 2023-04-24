@@ -10,6 +10,7 @@ import java.util.List;
 import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.DaoException;
+import com.epf.rentmanager.exception.EmailAlreadyExistsException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import org.springframework.stereotype.Service;
@@ -25,16 +26,24 @@ public class ClientService {
 	}
 	
 	public long create(Client client) throws ServiceException {
+		// TODO: créer un client
 		LocalDate today = LocalDate.now();
 		if (ChronoUnit.YEARS.between(client.getBirthday(), today) < 18) {
-			throw new ServiceException();
+			throw new ServiceException("the client is too young");
 		}
-		// TODO: créer un client
+		try {
+			if (clientDao.findByEmail(client.getEmail()) != null) {
+				throw new EmailAlreadyExistsException();
+			}
+		} catch (DaoException e) {
+			throw new RuntimeException(e);
+		}
+
 		try{
 			return this.clientDao.create(client);
 		}catch(DaoException e){
 			e.printStackTrace();
-			throw new ServiceException();
+			throw new ServiceException("An error occurred while creating the client.");
 		}
 	}
 	public long update(Client client) throws ServiceException {
@@ -43,7 +52,7 @@ public class ClientService {
 			return this.clientDao.update(client);
 		}catch(DaoException e){
 			e.printStackTrace();
-			throw new ServiceException();
+			throw new ServiceException("An error occurred while creating the client.");
 		}
 	}
 	public long delete(long id) throws ServiceException{
@@ -52,7 +61,7 @@ public class ClientService {
 		}catch(DaoException e){
 			e.printStackTrace();
 			System.out.println("erreur");
-			throw new ServiceException();
+			throw new ServiceException("An error occurred while deleting the client.");
 		}
 	}
 
@@ -61,7 +70,7 @@ public class ClientService {
 			return this.clientDao.findById(id);
 		}catch(DaoException e){
 			e.printStackTrace();
-			throw new ServiceException();
+			throw new ServiceException("An error occurred while finding by id the client.");
 		}
 		// TODO: récupérer un client par son id
 	}
@@ -72,7 +81,7 @@ public class ClientService {
 
 		} catch (DaoException e) {
 			e.printStackTrace();
-			throw new ServiceException();
+			throw new ServiceException("An error occurred while finding clients.");
 		}
 	}
 }
