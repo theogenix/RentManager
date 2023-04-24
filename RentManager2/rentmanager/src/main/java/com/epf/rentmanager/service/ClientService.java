@@ -1,6 +1,9 @@
 package com.epf.rentmanager.service;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +25,10 @@ public class ClientService {
 	}
 	
 	public long create(Client client) throws ServiceException {
+		LocalDate today = LocalDate.now();
+		if (ChronoUnit.YEARS.between(client.getBirthday(), today) < 18) {
+			throw new ServiceException();
+		}
 		// TODO: créer un client
 		try{
 			return this.clientDao.create(client);
