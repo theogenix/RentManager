@@ -20,17 +20,30 @@ public class ReservationService {
         this.reservationDao = reservationDao;
     }
 
-/*
-    public long getVehcile_id(ReservationDao reservationDao){
-        return reservationDao.getVehicle_id(reservation);
-    }*/
-
     private long getVehicle_id() {
         return 0;
     }
 
     public long create(Reservation reservation) throws ServiceException {
         // TODO: créer une réservation
+
+        try {
+            List<Reservation> reservations=reservationDao.findAll();
+            for (int i = 0; i < reservations.size(); i++){
+                Reservation reservationElement = reservations.get(i);
+                int id = reservationElement.getId();
+                try {
+                    if(((reservationDao.findAll().get(i).getVehicle_id())==(reservation.getVehicle_id()))&&(reservationDao.findAll().get(i).getStart().equals(reservation.getStart())))
+                        throw new ServiceException("vehicles can't be rent twice the same day");
+                } catch (DaoException e) {
+                    throw new ServiceException("vehicles can't be rent twice the same day");
+                }
+            }
+
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
+
         try{
             return this.reservationDao.create(reservation);
         }catch(DaoException e){

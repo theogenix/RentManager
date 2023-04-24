@@ -28,18 +28,17 @@
                         <form class="form-horizontal" method="post">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="last_name" class="col-sm-2 control-label">vehicle_id</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="vehicle_id" name="vehicle_id" placeholder="vehicle_id">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="last_name" class="col-sm-2 control-label">client_id</label>
+                                    <label for="client_id" class="col-sm-2 control-label">client_id</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="client_id" name="client_id" placeholder="client_id">
                                     </div>
                                 </div>
-
+                                <div class="form-group">
+                                     <label for="vehicle_id" class="col-sm-2 control-label">vehicle_id</label>
+                                     <div class="col-sm-10">
+                                         <input type="text" class="form-control" id="vehicle_id" name="vehicle_id" placeholder="vehicle_id">
+                                     </div>
+                                </div>
                                 <div class="form-group">
                                     <label for="begin" class="col-sm-2 control-label">Date de debut</label>
 
