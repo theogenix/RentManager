@@ -31,6 +31,12 @@ public class ClientService {
 		if (ChronoUnit.YEARS.between(client.getBirthday(), today) < 18) {
 			throw new ServiceException("the client is too young");
 		}
+		if((client.getName().length())<3){
+			throw new ServiceException("Name length are too short, must be > 2");
+		}
+		if((client.getSurname().length())<3){
+			throw new ServiceException("surname length are too short, must be > 2");
+		}
 		try {
 			if (clientDao.findByEmail(client.getEmail()) != null) {
 				throw new EmailAlreadyExistsException();
