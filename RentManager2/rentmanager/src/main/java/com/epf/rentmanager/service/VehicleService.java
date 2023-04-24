@@ -21,6 +21,17 @@ public class VehicleService {
 	}
 	public long create(Vehicle vehicle) throws ServiceException {
 		// TODO: créer un véhicule
+
+		if(vehicle.getMaker()==null){
+			throw new ServiceException("vehicle must have a maker");
+		}
+		if(vehicle.getModel()==null){
+			throw new ServiceException("vehicle must have a model");
+		}
+		if(vehicle.getNb_places()<2 || vehicle.getNb_places()>9 ){
+			throw new ServiceException("vehicle seats must be included between 2 and 9");
+		}
+
 		try{
 			return this.vehicleDao.create(vehicle);
 		}catch(DaoException e){
