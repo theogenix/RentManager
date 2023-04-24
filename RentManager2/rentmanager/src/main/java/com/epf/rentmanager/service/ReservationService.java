@@ -1,5 +1,8 @@
 package com.epf.rentmanager.service;
+import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.epf.rentmanager.dao.ReservationDao;
 import com.epf.rentmanager.exception.DaoException;
@@ -27,11 +30,39 @@ public class ReservationService {
     public long create(Reservation reservation) throws ServiceException {
         // TODO: créer une réservation
 
+        /*
+        try {
+            List<Reservation> reservations=reservationDao.findAll();
+            Map<Integer, Integer> compteur = new HashMap<>();
+            Map<Integer, Integer> compteurVehicule = new HashMap<>();
+            for (Reservation reservation1 : reservations) {
+                int clientId = reservation1.getClient_id();
+                int vehiculeId = reservation1.getVehicle_id();
+
+                int days = (int) (ChronoUnit.DAYS.between(reservation1.getEnd(), reservation1.getStart()));
+                int count = compteur.getOrDefault(clientId, 0);
+                if (count + days > 7 && vehiculeId == compteurVehicule.getOrDefault(clientId, -1)) {
+                    throw new IllegalArgumentException("Le client " + clientId + " ne peut pas réserver le véhicule " + vehiculeId + " pour plus de 7 jours");
+                }
+
+                // mettre à jour le compteur pour ce client
+                compteur.put(clientId, count + days);
+                compteurVehicule.put(clientId, vehiculeId);
+            }
+
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
+        */
+
+        if (ChronoUnit.DAYS.between(reservation.getStart(), reservation.getEnd()) > 30) {
+            throw new ServiceException("a car can't be rent for more than 30 days without break");
+        }
+
+
         try {
             List<Reservation> reservations=reservationDao.findAll();
             for (int i = 0; i < reservations.size(); i++){
-                Reservation reservationElement = reservations.get(i);
-                int id = reservationElement.getId();
                 try {
                     if(((reservationDao.findAll().get(i).getVehicle_id())==(reservation.getVehicle_id()))&&(reservationDao.findAll().get(i).getStart().equals(reservation.getStart())))
                         throw new ServiceException("vehicles can't be rent twice the same day");

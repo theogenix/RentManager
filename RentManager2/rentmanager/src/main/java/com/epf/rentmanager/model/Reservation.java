@@ -31,7 +31,7 @@ public class Reservation{
         this.end = end;
         this.id = id;
     }
-   public Reservation(int vehicle_id,int client_id, LocalDate start, LocalDate end) {
+   public Reservation(int client_id,int vehicle_id, LocalDate start, LocalDate end) {
         this.client_id = client_id;
         this.start = start;
         this.end = end;

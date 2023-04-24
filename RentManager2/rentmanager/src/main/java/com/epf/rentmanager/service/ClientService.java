@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.epf.rentmanager.dao.ClientDao;
+import com.epf.rentmanager.dao.ReservationDao;
 import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.EmailAlreadyExistsException;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 public class ClientService {
 
 	private ClientDao clientDao;
+
 	public static ClientService instance;
 
 	private ClientService(ClientDao clientDao){
@@ -62,6 +64,16 @@ public class ClientService {
 		}
 	}
 	public long delete(long id) throws ServiceException{
+
+		/*
+
+		try {
+			if(ReservationDao.findById(id)!= null)
+				ReservationDao.delete(id);
+		} catch (DaoException e) {
+			throw new RuntimeException(e);
+		}*/
+
 		try{
 			return this.clientDao.delete(id);
 		}catch(DaoException e){

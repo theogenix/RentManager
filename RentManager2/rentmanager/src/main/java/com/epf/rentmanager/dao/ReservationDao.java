@@ -27,7 +27,7 @@ import javax.naming.spi.ResolveResult;
 public class ReservationDao {
 
 	private static ReservationDao instance = null;
-	private ReservationDao() {
+	public ReservationDao() {
 
 	}
 	
@@ -39,10 +39,10 @@ public class ReservationDao {
 	private static final String UPDATE_RESERVATIONS_QUERY = "UPDATE Reservation SET client_id = ?,vehicle_id = ?, debut = ?, fin = ? WHERE id=?;";
 	ClientService clientService;
 	VehicleService vehicleService;
-	public long getVehicle_id(Reservation reservation){
+	public static long getVehicle_id(Reservation reservation){
 		return reservation.getVehicle_id();
 	}
-	public long create(Reservation reservation) throws DaoException {
+	public static long create(Reservation reservation) throws DaoException {
 		try {
 			Connection connection = ConnectionManager.getConnection();
 			PreparedStatement stmt = connection.prepareStatement(CREATE_RESERVATION_QUERY,Statement.RETURN_GENERATED_KEYS);
@@ -57,7 +57,7 @@ public class ReservationDao {
 			throw new DaoException();
 		}
 	}
-	public long delete(long id) throws DaoException {
+	public static long delete(long id) throws DaoException {
 		try {
 			Connection connection = ConnectionManager.getConnection();
 			PreparedStatement stmt = connection.prepareStatement(DELETE_RESERVATION_QUERY);
@@ -70,7 +70,7 @@ public class ReservationDao {
 		}
 	}
 
-	public List<Reservation> findResaByClientId(long clientId) throws DaoException {
+	public static List<Reservation> findResaByClientId(long clientId) throws DaoException {
 
 		try {
 			Connection connexion = ConnectionManager.getConnection();
@@ -96,7 +96,7 @@ public class ReservationDao {
 		return null;
 	}
 
-	public List<Reservation> findResaByVehicleId(long vehicleId) throws DaoException {
+	public static List<Reservation> findResaByVehicleId(long vehicleId) throws DaoException {
 
 		try {
 			Connection connexion = ConnectionManager.getConnection();
@@ -122,7 +122,7 @@ public class ReservationDao {
 		return null;
 	}
 
-	public long update(Reservation reservation) throws DaoException {
+	public static long update(Reservation reservation) throws DaoException {
 		try {
 			Connection connection = ConnectionManager.getConnection();
 			PreparedStatement stmt = connection.prepareStatement(UPDATE_RESERVATIONS_QUERY,Statement.RETURN_GENERATED_KEYS);
@@ -139,7 +139,7 @@ public class ReservationDao {
 		}
 	}
 
-	public List<Reservation> findAll() throws DaoException {
+	public static List<Reservation> findAll() throws DaoException {
 		List<Reservation> reservations=new ArrayList<Reservation>();
 		try {
 			Connection connection=ConnectionManager.getConnection();
@@ -163,7 +163,7 @@ public class ReservationDao {
 		//return new ArrayList<Reservation>();
 	}
 
-	public Reservation findById(long id) throws DaoException {
+	public static Reservation findById(long id) throws DaoException {
 		try {
 			Connection connection = ConnectionManager.getConnection();
 			PreparedStatement stmt = connection.prepareStatement(FIND_RESERVATIONS_QUERY);
