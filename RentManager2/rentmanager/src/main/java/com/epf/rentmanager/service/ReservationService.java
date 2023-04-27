@@ -30,31 +30,6 @@ public class ReservationService {
     public long create(Reservation reservation) throws ServiceException {
         // TODO: créer une réservation
 
-        /*
-        try {
-            List<Reservation> reservations=reservationDao.findAll();
-            Map<Integer, Integer> compteur = new HashMap<>();
-            Map<Integer, Integer> compteurVehicule = new HashMap<>();
-            for (Reservation reservation1 : reservations) {
-                int clientId = reservation1.getClient_id();
-                int vehiculeId = reservation1.getVehicle_id();
-
-                int days = (int) (ChronoUnit.DAYS.between(reservation1.getEnd(), reservation1.getStart()));
-                int count = compteur.getOrDefault(clientId, 0);
-                if (count + days > 7 && vehiculeId == compteurVehicule.getOrDefault(clientId, -1)) {
-                    throw new IllegalArgumentException("Le client " + clientId + " ne peut pas réserver le véhicule " + vehiculeId + " pour plus de 7 jours");
-                }
-
-                // mettre à jour le compteur pour ce client
-                compteur.put(clientId, count + days);
-                compteurVehicule.put(clientId, vehiculeId);
-            }
-
-        } catch (DaoException e) {
-            throw new RuntimeException(e);
-        }
-        */
-
         if (ChronoUnit.DAYS.between(reservation.getStart(), reservation.getEnd()) > 30) {
             throw new ServiceException("a car can't be rent for more than 30 days without break");
         }

@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/users/delete")
@@ -35,11 +36,17 @@ public class UserDeleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             long id = Long.parseLong(req.getParameter("id"));
+
+            List<Reservation> reservations = this.reservationService.findByIdClient(id);
+            List<Integer> reservations_id = new ArrayList<>();
+            for (int i = 0; i < reservations.size(); i++) {
+                    reservations_id.add(reservations.get(i).getClient_id());
+                }
+            for (int i = 0; i < reservations_id.size(); i++) {
+                reservationService.delete(reservations_id.get(i));
+            }
             clientService.delete(id);
-            /*
-            for (int i = 0; i < reservationService.findByIdVehicle(id).size(); i++) {
-                reservationService.delete(reservationService.findByIdVehicle(id).get(i).getClient_id());
-            }*/
+
 
         } catch (ServiceException e) {
             e.printStackTrace();
