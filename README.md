@@ -28,6 +28,8 @@ A car cannot be reserved for 30 consecutive days without a break. This constrain
 
 A car must have a model and a manufacturer, and the number of seats must be between 2 and 9. This constraint ensures that all necessary information is provided about the cars in the system, and helps to ensure that the cars are appropriate for the needs of users.
 
+If a client or a vehicle is deleted, then the associated reservations should also be deleted.
+
 
 ## How to launch the web application
 
